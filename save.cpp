@@ -18,7 +18,6 @@ bool SaveManager::saveGame(Player* player, PotionManager* potionManager, int cur
         return false;
     }
     
-    // Save player data (save base values, not calculated values)
     file << "LEVEL " << currentLevel << endl;
     file << "DIFFICULTY " << difficulty << endl;
     file << "PLAYER_BASE_MAXHP " << player->getBaseMaxHealth() << endl;
@@ -27,14 +26,12 @@ bool SaveManager::saveGame(Player* player, PotionManager* potionManager, int cur
     file << "PLAYER_GOLD " << player->getGold() << endl;
     file << "PLAYER_BOSS_BONUS " << player->getBossAttackBonus() << endl;
     
-    // Save equipment
     auto equipment = player->getEquipment();
     file << "EQUIPMENT_COUNT " << equipment.size() << endl;
     for (const auto& equip : equipment) {
         file << "EQUIPMENT " << equip << endl;
     }
     
-    // Save potions
     auto potions = potionManager->getAllPotions();
     file << "POTION_COUNT " << potions.size() << endl;
     for (const auto& pair : potions) {
@@ -56,7 +53,6 @@ bool SaveManager::loadGame(Player* player, PotionManager* potionManager, int& cu
     int equipmentCount = 0;
     int potionCount = 0;
     
-    // Clear existing equipment first
     player->clearEquipment();
     
     while (getline(file, line)) {
@@ -119,4 +115,3 @@ bool SaveManager::saveExists() const {
 bool SaveManager::deleteSave() {
     return remove(saveFileName.c_str()) == 0;
 }
-

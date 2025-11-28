@@ -40,7 +40,6 @@ void Enemy::doubleHealth() {
     currentHealth *= 2;
 }
 
-// Slim implementation
 Slim::Slim() : Enemy("Slim", 30, 10) {
 }
 
@@ -48,7 +47,6 @@ std::string Slim::getType() const {
     return "Slim";
 }
 
-// Batho implementation
 Batho::Batho() : Enemy("Batho", 60, 30) {
 }
 
@@ -56,7 +54,6 @@ std::string Batho::getType() const {
     return "Batho";
 }
 
-// Goust implementation
 Goust::Goust() : Enemy("Goust", 10, 80) {
 }
 
@@ -64,11 +61,9 @@ std::string Goust::getType() const {
     return "Goust";
 }
 
-// Boss implementation
 Boss::Boss() : Enemy("Boss", 300, 50) {
 }
 
 std::string Boss::getType() const {
     return "Boss";
 }
-

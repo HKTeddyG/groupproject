@@ -6,60 +6,40 @@
 #include <string>
 #include <vector>
 
-/**
- * @brief Manages save and load functionality for game state
- * 
- * This class handles saving game progress to a file and loading
- * it back, including player stats, equipment, potions, and level progress.
- */
 class SaveManager {
 private:
-    std::string saveFileName; // Name of save file
+    std::string saveFileName;
     
 public:
-    /**
-     * @brief Constructor - Initializes save manager with filename
-     * @param filename Name of save file (default: "savegame.txt")
-     */
+    // What it does: Initializes save manager with filename
+    // Inputs: filename - name of save file (default: "savegame.txt")
+    // Outputs: None
     SaveManager(const std::string& filename = "savegame.txt");
     
-    /**
-     * @brief Destructor - Cleans up save manager resources
-     */
+    // What it does: Cleans up save manager resources
+    // Inputs: None
+    // Outputs: None
     ~SaveManager();
     
-    /**
-     * @brief Save game state to file
-     * @param player Pointer to player object
-     * @param potionManager Pointer to potion manager
-     * @param currentLevel Current level number
-     * @param difficulty Difficulty mode (0=easy, 1=hard)
-     * @return true if save was successful, false otherwise
-     */
+    // What it does: Saves game state to file including player stats, equipment, potions, level, and difficulty
+    // Inputs: player - pointer to player object, potionManager - pointer to potion manager, currentLevel - current level number, difficulty - difficulty mode (0=easy, 1=hard)
+    // Outputs: Returns true if save was successful, false otherwise
     bool saveGame(Player* player, PotionManager* potionManager, int currentLevel, int difficulty);
     
-    /**
-     * @brief Load game state from file
-     * @param player Pointer to player object (will be modified)
-     * @param potionManager Pointer to potion manager (will be modified)
-     * @param currentLevel Reference to store loaded level number
-     * @param difficulty Reference to store loaded difficulty mode
-     * @return true if load was successful, false otherwise
-     */
+    // What it does: Loads game state from file and restores player stats, equipment, potions, level, and difficulty
+    // Inputs: player - pointer to player object (will be modified), potionManager - pointer to potion manager (will be modified), currentLevel - reference to store loaded level number, difficulty - reference to store loaded difficulty mode
+    // Outputs: Returns true if load was successful, false otherwise
     bool loadGame(Player* player, PotionManager* potionManager, int& currentLevel, int& difficulty);
     
-    /**
-     * @brief Check if save file exists
-     * @return true if save file exists, false otherwise
-     */
+    // What it does: Checks if save file exists
+    // Inputs: None
+    // Outputs: Returns true if save file exists, false otherwise
     bool saveExists() const;
     
-    /**
-     * @brief Delete save file
-     * @return true if deletion was successful, false otherwise
-     */
+    // What it does: Deletes save file
+    // Inputs: None
+    // Outputs: Returns true if deletion was successful, false otherwise
     bool deleteSave();
 };
 
-#endif // SAVE_H
-
+#endif

@@ -19,14 +19,12 @@ EventManager::~EventManager() {
 string EventManager::executeRandomEvent(Player* player, PotionManager* potionManager,
                                        bool& enemyDoubleHP, string& disabledEquipment) {
     if (isHardMode) {
-        // Hard mode: 50% positive, 50% negative (2 out of 4 negative events affect next battle)
         int roll = rand() % 4;
         if (roll < 2) {
             return executeNegativeEvent(player, enemyDoubleHP, disabledEquipment);
         }
     }
     
-    // Positive event (1-4)
     int eventNum = (rand() % 4) + 1;
     return executePositiveEvent(player, potionManager, eventNum);
 }
@@ -34,7 +32,6 @@ string EventManager::executeRandomEvent(Player* player, PotionManager* potionMan
 string EventManager::executePositiveEvent(Player* player, PotionManager* potionManager, int eventNum) {
     switch (eventNum) {
         case 1: {
-            // Get random equipment
             vector<string> equipmentTypes = {"Shield", "Sword", "Armor", "Shoes"};
             int index = rand() % equipmentTypes.size();
             string equip = equipmentTypes[index];
@@ -68,13 +65,11 @@ string EventManager::executeNegativeEvent(Player* player, bool& enemyDoubleHP, s
     
     switch (eventType) {
         case 0: {
-            // Lose some health
-            int damage = 20 + (rand() % 30); // 20-50 damage
+            int damage = 20 + (rand() % 30);
             player->takeDamage(damage);
             return "Event: You stepped on a trap! Lost " + to_string(damage) + " HP.";
         }
         case 1: {
-            // Lose gold (if any)
             if (player->getGold() > 0) {
                 int goldLost = 1;
                 if (player->getGold() > 1) {
@@ -89,19 +84,16 @@ string EventManager::executeNegativeEvent(Player* player, bool& enemyDoubleHP, s
             }
         }
         case 2: {
-            // Negative Event 1: Next battle enemies have double HP
             enemyDoubleHP = true;
             return "Event: A dark curse weakens you! Enemies in the next battle will have double HP.";
         }
         case 3: {
-            // Negative Event 2: Next battle one random equipment is disabled
             vector<string> equipment = player->getEquipment();
             if (!equipment.empty()) {
                 int index = rand() % equipment.size();
                 disabledEquipment = equipment[index];
                 return "Event: A curse has been placed on your " + disabledEquipment + "! It will be disabled in the next battle.";
             } else {
-                // If no equipment, apply damage instead
                 player->takeDamage(25);
                 return "Event: A cursed spirit curses you! Lost 25 HP.";
             }
@@ -114,4 +106,3 @@ string EventManager::executeNegativeEvent(Player* player, bool& enemyDoubleHP, s
 void EventManager::setHardMode(bool hardMode) {
     isHardMode = hardMode;
 }
-

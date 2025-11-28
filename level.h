@@ -4,63 +4,47 @@
 #include <string>
 #include <vector>
 
-/**
- * @brief Manages level progression and level definitions
- * 
- * This class handles level data structure, level completion,
- * and determining what type of level (battle or event) each level is.
- */
 class Level {
 private:
-    int levelNumber;                // Current level number (1-12)
-    std::string levelType;          // "battle" or "event"
-    std::vector<std::string> enemies; // Enemy types for battle levels
+    int levelNumber;
+    std::string levelType;
+    std::vector<std::string> enemies;
     
 public:
-    /**
-     * @brief Constructor - Creates a level with given parameters
-     * @param number Level number (1-12)
-     * @param type Level type ("battle" or "event")
-     * @param enemyTypes Vector of enemy types for battle levels
-     */
+    // What it does: Creates a level with given number, type, and enemy types
+    // Inputs: number - level number (1-12), type - level type ("battle" or "event"), enemyTypes - vector of enemy types for battle levels
+    // Outputs: None
     Level(int number, const std::string& type, const std::vector<std::string>& enemyTypes);
     
-    /**
-     * @brief Destructor - Cleans up level resources
-     */
+    // What it does: Cleans up level resources
+    // Inputs: None
+    // Outputs: None
     ~Level();
     
-    /**
-     * @brief Get level number
-     * @return Level number (1-12)
-     */
+    // What it does: Returns level number
+    // Inputs: None
+    // Outputs: Level number (1-12) (int)
     int getNumber() const;
     
-    /**
-     * @brief Get level type
-     * @return Level type string ("battle" or "event")
-     */
+    // What it does: Returns level type
+    // Inputs: None
+    // Outputs: Level type string ("battle" or "event")
     std::string getType() const;
     
-    /**
-     * @brief Get enemy types for battle level
-     * @return Vector of enemy type strings
-     */
+    // What it does: Returns enemy types for battle level
+    // Inputs: None
+    // Outputs: Vector of enemy type strings
     std::vector<std::string> getEnemies() const;
     
-    /**
-     * @brief Create level definition based on level number
-     * @param levelNum Level number (1-12)
-     * @return Level object for the specified level
-     */
+    // What it does: Creates level definition based on level number
+    // Inputs: levelNum - level number (1-12)
+    // Outputs: Level object for the specified level
     static Level createLevel(int levelNum);
     
-    /**
-     * @brief Get total number of levels
-     * @return Total number of levels (12)
-     */
+    // What it does: Returns total number of levels in the game
+    // Inputs: None
+    // Outputs: Total number of levels (12) (int)
     static int getTotalLevels();
 };
 
-#endif // LEVEL_H
-
+#endif

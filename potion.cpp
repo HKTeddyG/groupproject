@@ -62,4 +62,3 @@ std::string PotionManager::getRandomPotion() {
     int index = rand() % types.size();
     return types[index];
 }
-

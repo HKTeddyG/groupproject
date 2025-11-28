@@ -12,7 +12,6 @@ Battle::Battle(Player* player, PotionManager* potionManager,
     : player(player), potionManager(potionManager), 
       playerTurnFirst(playerFirst), turnCount(0) {
     
-    // Create enemies based on types
     for (const auto& type : enemyTypes) {
         if (type == "Slim") {
             enemies.push_back(make_unique<Slim>());
@@ -25,19 +24,16 @@ Battle::Battle(Player* player, PotionManager* potionManager,
         }
     }
     
-    // Limit to maximum 3 enemies
     while (enemies.size() > 3) {
         enemies.pop_back();
     }
     
-    // Apply double HP effect to all enemies
     if (enemyDoubleHP) {
         for (auto& enemy : enemies) {
             enemy->doubleHealth();
         }
     }
     
-    // Set disabled equipment for player
     player->setDisabledEquipment(disabledEquip);
 }
 
@@ -61,7 +57,6 @@ void Battle::displayStatus() const {
 
 bool Battle::execute() {
     player->restoreToFull();
-    // Set extra actions from Shoes, but only if Shoes are not disabled
     int shoesCount = 0;
     if (player->getDisabledEquipment() != "Shoes") {
         shoesCount = player->countEquipment("Shoes");
@@ -76,7 +71,7 @@ bool Battle::execute() {
         
         if (playerTurnFirst) {
             if (!playerTurn()) {
-                return false; // Player quit
+                return false;
             }
             removeDeadEnemies();
             if (isWon()) break;
@@ -89,7 +84,7 @@ bool Battle::execute() {
             if (isWon()) break;
             
             if (!playerTurn()) {
-                return false; // Player quit
+                return false;
             }
             removeDeadEnemies();
         }
@@ -97,7 +92,6 @@ bool Battle::execute() {
         displayStatus();
     }
     
-    // Clear disabled equipment after battle
     player->setDisabledEquipment("");
     
     if (isWon()) {
@@ -111,7 +105,7 @@ bool Battle::execute() {
 
 bool Battle::playerTurn() {
     int actions = 1 + player->getExtraActions();
-    player->setExtraActions(0); // Reset after use
+    player->setExtraActions(0);
     
     for (int actionNum = 0; actionNum < actions; actionNum++) {
         if (isWon() || isLost()) break;
@@ -129,7 +123,7 @@ bool Battle::playerTurn() {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Invalid input. Please enter a number." << endl;
-            actionNum--; // Retry this action
+            actionNum--;
             continue;
         }
         
@@ -145,7 +139,7 @@ bool Battle::playerTurn() {
                 break;
             default:
                 cout << "Invalid choice. Try again." << endl;
-                actionNum--; // Retry this action
+                actionNum--;
                 continue;
         }
         
@@ -160,7 +154,6 @@ bool Battle::playerTurn() {
 void Battle::playerAttack() {
     if (enemies.empty()) return;
     
-    // Count alive enemies
     vector<int> aliveIndices;
     for (size_t i = 0; i < enemies.size(); i++) {
         if (enemies[i]->isAlive()) {
@@ -274,26 +267,22 @@ void Battle::bossAction(Enemy* boss) {
         initialized = true;
     }
     
-    // Count alive enemies (including boss)
     int aliveCount = 0;
     for (const auto& e : enemies) {
         if (e->isAlive()) aliveCount++;
     }
     
     if (aliveCount >= 3) {
-        // Must attack if 3 enemies
         int damage = boss->getAttack();
         player->takeDamage(damage);
         cout << boss->getName() << " attacks you for " << damage << " damage!" << endl;
     } else if (aliveCount == 2) {
-        // 50% attack, 50% summon Goust
         int roll = rand() % 2;
         if (roll == 0) {
             int damage = boss->getAttack();
             player->takeDamage(damage);
             cout << boss->getName() << " attacks you for " << damage << " damage!" << endl;
         } else {
-            // Summon Goust (if not at max)
             if (enemies.size() < 3) {
                 enemies.push_back(make_unique<Goust>());
                 cout << boss->getName() << " summons a Goust!" << endl;
@@ -304,14 +293,12 @@ void Battle::bossAction(Enemy* boss) {
             }
         }
     } else {
-        // Only boss alive: 34% attack, 33% summon 2 Batho, 33% summon Goust
         int roll = rand() % 100;
         if (roll < 34) {
             int damage = boss->getAttack();
             player->takeDamage(damage);
             cout << boss->getName() << " attacks you for " << damage << " damage!" << endl;
         } else if (roll < 67) {
-            // Summon 2 Batho
             int canAdd = 3 - enemies.size();
             int toAdd = (canAdd > 2) ? 2 : canAdd;
             for (int i = 0; i < toAdd; i++) {
@@ -319,7 +306,6 @@ void Battle::bossAction(Enemy* boss) {
             }
             cout << boss->getName() << " summons " << toAdd << " Batho(s)!" << endl;
         } else {
-            // Summon Goust
             if (enemies.size() < 3) {
                 enemies.push_back(make_unique<Goust>());
                 cout << boss->getName() << " summons a Goust!" << endl;
@@ -356,4 +342,3 @@ bool Battle::isLost() const {
 int Battle::getTurnCount() const {
     return turnCount;
 }
-

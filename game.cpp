@@ -87,11 +87,10 @@ int Game::selectDifficulty() {
         return 0;
     }
     
-    return choice - 1; // 0 for easy, 1 for hard
+    return choice - 1;
 }
 
 void Game::startNewGame() {
-    // Reset game state
     delete player;
     delete potionManager;
     player = new Player();
@@ -114,7 +113,6 @@ void Game::startNewGame() {
 void Game::loadGame() {
     cout << "\nLoading game..." << endl;
     
-    // Reset state
     delete player;
     delete potionManager;
     player = new Player();
@@ -159,7 +157,6 @@ void Game::gameLoop() {
             break;
         }
         
-        // Ask if player wants to continue, save, or go to shop
         cout << "\n=== What would you like to do? ===" << endl;
         cout << "1. Continue to next level" << endl;
         cout << "2. Save game" << endl;
@@ -173,7 +170,7 @@ void Game::gameLoop() {
         if (cin.fail()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            choice = 1; // Default to continue
+            choice = 1;
         }
         
         switch (choice) {
@@ -210,7 +207,6 @@ bool Game::processBattleLevel(const Level& level) {
     }
     cout << endl;
     
-    // Apply negative event effects
     if (enemyDoubleHP) {
         cout << "Warning: Enemies have double HP in this battle!" << endl;
     }
@@ -222,7 +218,6 @@ bool Game::processBattleLevel(const Level& level) {
     Battle battle(player, potionManager, enemies, playerFirst, enemyDoubleHP, disabledEquipment);
     bool won = battle.execute();
     
-    // Reset negative event effects after battle
     enemyDoubleHP = false;
     disabledEquipment = "";
     
@@ -269,13 +264,11 @@ void Game::displayPlayerStatus() const {
 }
 
 void Game::handleLevelRewards() {
-    // Award random potion after battle
     string randomPotion = PotionManager::getRandomPotion();
     potionManager->addPotion(randomPotion, 1);
     cout << "\n=== Level Complete! ===" << endl;
     cout << "Reward: " << randomPotion << " x1" << endl;
     
-    // Award equipment after level 4 and level 8
     if (currentLevel == 4 || currentLevel == 8) {
         string randomEquipment = getRandomEquipment();
         if (player->addEquipment(randomEquipment)) {
@@ -310,4 +303,3 @@ void Game::handleGameCompletion() {
     
     gameOver = true;
 }
-

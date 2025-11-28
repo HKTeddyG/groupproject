@@ -3,128 +3,115 @@
 
 #include <string>
 
-/**
- * @brief Base class for all enemy types in the game
- * 
- * This class represents enemies that the player will fight during battles.
- * Different enemy types inherit from this class.
- */
 class Enemy {
 protected:
-    std::string name;       // Enemy name
-    int maxHealth;          // Maximum health
-    int currentHealth;      // Current health
-    int attack;             // Attack damage
+    std::string name;
+    int maxHealth;
+    int currentHealth;
+    int attack;
     
 public:
-    /**
-     * @brief Constructor - Initializes enemy with given parameters
-     * @param name Enemy name
-     * @param health Enemy health
-     * @param attack Enemy attack damage
-     */
+    // What it does: Initializes enemy with given name, health, and attack values
+    // Inputs: name - enemy name, health - enemy health, attack - enemy attack damage
+    // Outputs: None
     Enemy(const std::string& name, int health, int attack);
     
-    /**
-     * @brief Destructor - Cleans up enemy resources
-     */
+    // What it does: Cleans up enemy resources
+    // Inputs: None
+    // Outputs: None
     virtual ~Enemy();
     
-    /**
-     * @brief Get enemy name
-     * @return Enemy name
-     */
+    // What it does: Returns enemy name
+    // Inputs: None
+    // Outputs: Enemy name (string)
     std::string getName() const;
     
-    /**
-     * @brief Get current health
-     * @return Current health value
-     */
+    // What it does: Returns current health value
+    // Inputs: None
+    // Outputs: Current health value (int)
     int getCurrentHealth() const;
     
-    /**
-     * @brief Get maximum health
-     * @return Maximum health value
-     */
+    // What it does: Returns maximum health value
+    // Inputs: None
+    // Outputs: Maximum health value (int)
     int getMaxHealth() const;
     
-    /**
-     * @brief Get attack damage
-     * @return Attack damage value
-     */
+    // What it does: Returns attack damage value
+    // Inputs: None
+    // Outputs: Attack damage value (int)
     int getAttack() const;
     
-    /**
-     * @brief Take damage
-     * @param damage Amount of damage to take
-     */
+    // What it does: Reduces enemy health by damage amount
+    // Inputs: damage - amount of damage to take
+    // Outputs: None
     void takeDamage(int damage);
     
-    /**
-     * @brief Check if enemy is alive
-     * @return true if health > 0, false otherwise
-     */
+    // What it does: Checks if enemy is alive
+    // Inputs: None
+    // Outputs: Returns true if health > 0, false otherwise
     bool isAlive() const;
     
-    /**
-     * @brief Double the enemy's maximum and current health
-     */
+    // What it does: Doubles the enemy's maximum and current health
+    // Inputs: None
+    // Outputs: None
     void doubleHealth();
     
-    /**
-     * @brief Get enemy type identifier
-     * @return Enemy type string
-     */
+    // What it does: Returns enemy type identifier (pure virtual function)
+    // Inputs: None
+    // Outputs: Enemy type string
     virtual std::string getType() const = 0;
 };
 
-/**
- * @brief Slim enemy type - Weak enemy with low health and attack
- */
 class Slim : public Enemy {
 public:
-    /**
-     * @brief Constructor - Creates a Slim enemy
-     */
+    // What it does: Creates a Slim enemy with 30 HP and 10 attack
+    // Inputs: None
+    // Outputs: None
     Slim();
+    
+    // What it does: Returns enemy type as "Slim"
+    // Inputs: None
+    // Outputs: Enemy type string "Slim"
     virtual std::string getType() const override;
 };
 
-/**
- * @brief Batho enemy type - Medium enemy with moderate health and attack
- */
 class Batho : public Enemy {
 public:
-    /**
-     * @brief Constructor - Creates a Batho enemy
-     */
+    // What it does: Creates a Batho enemy with 60 HP and 30 attack
+    // Inputs: None
+    // Outputs: None
     Batho();
+    
+    // What it does: Returns enemy type as "Batho"
+    // Inputs: None
+    // Outputs: Enemy type string "Batho"
     virtual std::string getType() const override;
 };
 
-/**
- * @brief Goust enemy type - High damage but low health enemy
- */
 class Goust : public Enemy {
 public:
-    /**
-     * @brief Constructor - Creates a Goust enemy
-     */
+    // What it does: Creates a Goust enemy with 10 HP and 80 attack
+    // Inputs: None
+    // Outputs: None
     Goust();
+    
+    // What it does: Returns enemy type as "Goust"
+    // Inputs: None
+    // Outputs: Enemy type string "Goust"
     virtual std::string getType() const override;
 };
 
-/**
- * @brief Boss enemy type - Final boss with special abilities
- */
 class Boss : public Enemy {
 public:
-    /**
-     * @brief Constructor - Creates a Boss enemy
-     */
+    // What it does: Creates a Boss enemy with 300 HP and 50 attack
+    // Inputs: None
+    // Outputs: None
     Boss();
+    
+    // What it does: Returns enemy type as "Boss"
+    // Inputs: None
+    // Outputs: Enemy type string "Boss"
     virtual std::string getType() const override;
 };
 
-#endif // ENEMY_H
-
+#endif

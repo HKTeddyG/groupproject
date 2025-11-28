@@ -27,7 +27,6 @@ int Player::getMaxHealth() const {
 int Player::getAttack() const {
     int totalAttack = baseAttack;
     int swordCount = countEquipment("Sword");
-    // Each sword increases attack by 50% of base
     if (disabledEquipment != "Sword") {
         totalAttack += (int)(baseAttack * 0.5 * swordCount);
     }
@@ -75,7 +74,6 @@ bool Player::addEquipment(const std::string& equipName) {
     }
     equipment.push_back(equipName);
     
-    // Update extra actions if Shoes are added
     if (equipName == "Shoes") {
         extraActions++;
     }
@@ -117,7 +115,7 @@ void Player::useExtraAction() {
 
 void Player::increaseMaxHealth(int amount) {
     maxHealth += amount;
-    currentHealth += amount; // Also increase current health
+    currentHealth += amount;
 }
 
 void Player::increaseAttack(int amount) {
@@ -187,4 +185,3 @@ std::string Player::getDisabledEquipment() const {
 bool Player::isAlive() const {
     return currentHealth > 0;
 }
-

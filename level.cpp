@@ -82,4 +82,3 @@ Level Level::createLevel(int levelNum) {
 int Level::getTotalLevels() {
     return 12;
 }
-
