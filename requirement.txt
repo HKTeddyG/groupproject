@@ -1,0 +1,53 @@
+INTRODUCTION 
+In this project, you will apply what you have learned in the course (e.g., github usage, C/C++ programming, etc.) and 
+implement a text-based mini-game of your own choice. A text-based game is a console application that can be 
+accessed using the Linux terminal and via SSH. Please pay attention to the project requirements, scope, and 
+submission details in this instruction. You have the flexibility to work on your own idea as long as your final program 
+comprises the element as set out in the code requirement below.
+
+REQUIREMENTS 
+• Code Requirement: Your implementation should include all the following coding elements: 
+o Generation of random events 
+o Data structures for storing data 
+o Dynamic memory management 
+o File input/output (e.g., for loading/saving data) 
+o Program codes in multiple files 
+o Multiple Difficulty Levels: The game should have more than one difficulty level, allowing the player 
+to choose their preferred level. 
+• Documentation and Code style: 
+o In-code documentation: For each function, comments on “what it does”, “what the inputs are”, and 
+“what the outputs are” are needed. 
+o Proper indentation and naming styles should be used to ensure readability and maintainability. 
+o All project files should be committed to a private GitHub repo. Commit comments should not be 
+empty and should be written sensibly. 
+o README.MD: Include team members, application description, features, non-standard libraries, and 
+compilation/execution instructions. 
+the grader won't download any libraries from the internet for you, and your program will be considered not 
+compilable because of missing dependencies. To use a library that requires additional installation, you 
+should either put the necessary files from a library together with your code so that an additional installation 
+is not needed, or you shouldn't use the library at all. 
+• You should make sure your code can be successfully compiled in the Computer Science department's 
+academy server.
+
+Stage 1:
+What to do for this milestone:
+To set up a private GitHub repo where your work will be hosted.
+ Set up a private Github repository that includes all group members and the teaching team account 
+engg1340comp2113. 
+• You can refer to Inviting collaborators to a personal repository GitHub Docs for the procedure to add 
+collaborators. 
+• The teaching team will accept the invitation within 7 days. If we fail to do so, please add again.
+
+Stage 2:
+• In the same Github repo that you set up in Stage 1. 
+o Create a README.MD file in the repo that contains: 
+▪ Identification of the team members. 
+▪ A description of your game. 
+▪ A list of features that you have implemented and explain how each coding element 1 to 5 listed 
+under the coding requirements aforementioned support your features. 
+▪ A list of non-standard C/C++ libraries, if any, that are used in your work and integrated to your 
+code repo. Please also indicate what features in your game are supported by these libraries. 
+▪ Compilation and execution instructions. This serves like a "Quick start" of your game. The 
+teaching team will follow your instructions to compile and run your game. 
+o Your code including the makefile and all source files (.h / .cpp) 
+• Submit a link to the repo to Moodle. (Refer to the details on the submission page)
