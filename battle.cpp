@@ -206,9 +206,11 @@ void Battle::playerUsePotion() {
     vector<string> potionList;
     int index = 1;
     for (const auto& pair : allPotions) {
-        cout << index << ". " << pair.first << " x" << pair.second << endl;
-        potionList.push_back(pair.first);
-        index++;
+        if (pair.second > 0) {
+            cout << index << ". " << pair.first << " x" << pair.second << endl;
+            potionList.push_back(pair.first);
+            index++;
+        }
     }
     
     int choice;

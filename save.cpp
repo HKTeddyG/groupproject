@@ -95,7 +95,15 @@ bool SaveManager::loadGame(Player* player, PotionManager* potionManager, int& cu
         } else if (key == "POTION" && potionCount > 0) {
             string potionName;
             int quantity;
-            iss >> potionName >> quantity;
+            string restOfLine;
+            getline(iss, restOfLine);
+            size_t lastSpace = restOfLine.find_last_of(' ');
+            if (lastSpace != string::npos) {
+                potionName = restOfLine.substr(1, lastSpace - 1);
+                quantity = stoi(restOfLine.substr(lastSpace + 1));
+            } else {
+                continue;
+            }
             potionManager->addPotion(potionName, quantity);
             potionCount--;
         }
