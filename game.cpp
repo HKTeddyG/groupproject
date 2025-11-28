@@ -128,6 +128,7 @@ void Game::loadGame() {
     
     if (saveManager->loadGame(player, potionManager, currentLevel, difficulty)) {
         eventManager->setHardMode(difficulty == 1);
+        player->restoreToFull();
         cout << "Game loaded successfully!" << endl;
         cout << "Current Level: " << currentLevel << endl;
         cout << "Difficulty: " << (difficulty == 0 ? "Easy" : "Hard") << endl;
@@ -143,6 +144,7 @@ void Game::gameLoop() {
         cout << "           LEVEL " << currentLevel << "/" << Level::getTotalLevels() << endl;
         cout << "========================================" << endl;
         
+        player->restoreToFull();
         displayPlayerStatus();
         
         Level level = Level::createLevel(currentLevel);
@@ -183,12 +185,13 @@ void Game::gameLoop() {
         switch (choice) {
             case 1:
                 currentLevel++;
+                player->restoreToFull();
                 break;
             case 2:
                 shop->open(player);
                 break;
             case 3:
-                if (saveManager->saveGame(player, potionManager, currentLevel, difficulty)) {
+                if (saveManager->saveGame(player, potionManager, currentLevel + 1, difficulty)) {
                     cout << "Game saved automatically. Thank you for playing Fight to Monsters! Goodbye!" << endl;
                 } else {
                     cout << "Failed to save game. Thank you for playing Fight to Monsters! Goodbye!" << endl;
@@ -197,6 +200,7 @@ void Game::gameLoop() {
                 break;
             default:
                 currentLevel++;
+                player->restoreToFull();
                 break;
         }
     }
