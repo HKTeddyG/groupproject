@@ -75,28 +75,28 @@ Fight to Monsters is a text-based role-playing game (RPG) implemented in C++ tha
 
 ### 1. Generation of Random Events
 - **Location**: `event.cpp` (EventManager class)
-- **Implementation**: The `executeRandomEvent()` function uses `std::rand()` to generate random events. In hard mode, there's a 30% chance of negative events. Positive events are randomly selected from 4 types. Random potions are also generated after battles using `PotionManager::getRandomPotion()`.
+- **Implementation**: The `executeRandomEvent()` function uses `rand()` to generate random events. In hard mode, there's a 30% chance of negative events. Positive events are randomly selected from 4 types. Random potions are also generated after battles using `PotionManager::getRandomPotion()`.
 
 ### 2. Data Structures for Storing Data
 - **Location**: Multiple files
 - **Implementation**: 
-  - `std::vector<std::string>` for storing equipment (player.h/cpp)
-  - `std::map<std::string, int>` for storing potions with quantities (potion.h/cpp)
-  - `std::vector<std::unique_ptr<Enemy>>` for managing enemies in battles (battle.h/cpp)
+  - `vector<string>` for storing equipment (player.h/cpp)
+  - `map<string, int>` for storing potions with quantities (potion.h/cpp)
+  - `vector<unique_ptr<Enemy>>` for managing enemies in battles (battle.h/cpp)
   - Structures like Player, Enemy classes encapsulate related data
 
 ### 3. Dynamic Memory Management
 - **Location**: `game.cpp`, `battle.cpp`
 - **Implementation**: 
   - `Player*`, `PotionManager*`, etc. are dynamically allocated using `new` in Game constructor
-  - `std::unique_ptr<Enemy>` is used for enemy management to automatically handle memory
+  - `unique_ptr<Enemy>` is used for enemy management to automatically handle memory
   - All dynamically allocated memory is properly deallocated in destructors using `delete`
 
 ### 4. File Input/Output
 - **Location**: `save.cpp` (SaveManager class)
 - **Implementation**: 
-  - `saveGame()` writes game state to `savegame.txt` using `std::ofstream`
-  - `loadGame()` reads game state from file using `std::ifstream`
+  - `saveGame()` writes game state to `savegame.txt` using `ofstream`
+  - `loadGame()` reads game state from file using `ifstream`
   - Saves player stats, equipment, potions, level progress, and difficulty setting
 
 ### 5. Program Codes in Multiple Files
