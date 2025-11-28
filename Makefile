@@ -1,7 +1,7 @@
 # Makefile for Text-based RPG Game
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall -Wextra -g
+CXXFLAGS = -std=c++14 -Wall -Wextra -g
 TARGET = game
 SOURCES = main.cpp player.cpp enemy.cpp potion.cpp battle.cpp level.cpp event.cpp shop.cpp save.cpp game.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
