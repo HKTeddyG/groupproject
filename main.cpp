@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-// What it does: Main entry point for the text-based RPG game. Initializes and runs the game.
+// What it does: Main entry point for Fight to Monsters game. Initializes and runs the game.
 // Inputs: None
 // Outputs: Returns exit code (0 for successful execution)
 int main() {

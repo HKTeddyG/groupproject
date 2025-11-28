@@ -1,4 +1,4 @@
-# Makefile for Text-based RPG Game
+# Makefile for Fight to Monsters Game
 # Compiler and flags
 CXX = g++
 CXXFLAGS = -std=c++14 -Wall -Wextra -g

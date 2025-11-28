@@ -50,7 +50,15 @@ void Game::run() {
                 }
                 break;
             case 3:
-                cout << "Thank you for playing! Goodbye!" << endl;
+                if (currentLevel > 1 || (player->getGold() > 0 || !player->getEquipment().empty() || !potionManager->getAllPotions().empty())) {
+                    if (saveManager->saveGame(player, potionManager, currentLevel, difficulty)) {
+                        cout << "Game saved automatically. Thank you for playing Fight to Monsters! Goodbye!" << endl;
+                    } else {
+                        cout << "Failed to save game. Thank you for playing Fight to Monsters! Goodbye!" << endl;
+                    }
+                } else {
+                    cout << "Thank you for playing Fight to Monsters! Goodbye!" << endl;
+                }
                 gameOver = true;
                 break;
             default:
@@ -62,7 +70,7 @@ void Game::run() {
 
 void Game::displayMainMenu() const {
     cout << "\n========================================" << endl;
-    cout << "      TEXT-BASED RPG GAME" << endl;
+    cout << "      Fight to Monsters" << endl;
     cout << "========================================" << endl;
     cout << "1. New Game" << endl;
     cout << "2. Load Game" << endl;
@@ -159,10 +167,9 @@ void Game::gameLoop() {
         
         cout << "\n=== What would you like to do? ===" << endl;
         cout << "1. Continue to next level" << endl;
-        cout << "2. Save game" << endl;
-        cout << "3. Visit shop" << endl;
-        cout << "4. Exit game" << endl;
-        cout << "Select option (1-4): ";
+        cout << "2. Visit shop" << endl;
+        cout << "3. Exit game (auto-save)" << endl;
+        cout << "Select option (1-3): ";
         
         int choice;
         cin >> choice;
@@ -178,16 +185,14 @@ void Game::gameLoop() {
                 currentLevel++;
                 break;
             case 2:
-                if (saveManager->saveGame(player, potionManager, currentLevel, difficulty)) {
-                    cout << "Game saved successfully!" << endl;
-                } else {
-                    cout << "Failed to save game!" << endl;
-                }
-                break;
-            case 3:
                 shop->open(player);
                 break;
-            case 4:
+            case 3:
+                if (saveManager->saveGame(player, potionManager, currentLevel, difficulty)) {
+                    cout << "Game saved automatically. Thank you for playing Fight to Monsters! Goodbye!" << endl;
+                } else {
+                    cout << "Failed to save game. Thank you for playing Fight to Monsters! Goodbye!" << endl;
+                }
                 gameOver = true;
                 break;
             default:

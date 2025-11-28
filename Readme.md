@@ -1,11 +1,11 @@
-# Text-Based RPG Game
+# Fight to Monsters
 
 ## Team Members
 Zihao Gao
 
 ## Application Description
 
-This is a text-based role-playing game (RPG) implemented in C++ that can be played in a Linux terminal environment. The game features a progression system with 12 levels, turn-based combat, equipment management, potion system, and a shop for permanent upgrades. Players must complete all 12 levels to win the game, with increasing difficulty as they progress.
+Fight to Monsters is a text-based role-playing game (RPG) implemented in C++ that can be played in a Linux terminal environment. The game features a progression system with 12 levels, turn-based combat, equipment management, potion system, and a shop for permanent upgrades. Players must complete all 12 levels to win the game, with increasing difficulty as they progress.
 
 ## Features
 
@@ -67,7 +67,7 @@ This is a text-based role-playing game (RPG) implemented in C++ that can be play
   - **Coke**: Permanently increases attack by 10 (Cost: 1 gold)
 
 ### 9. Save/Load System
-- Save game progress at any time between levels
+- Game automatically saves when exiting
 - Load saved games to continue progress
 - Saves player stats, equipment, potions, gold, and level progress
 
@@ -157,13 +157,13 @@ This is a text-based role-playing game (RPG) implemented in C++ that can be play
 2. Follow the on-screen menu:
    - Select "1" to start a new game
    - Select "2" to load a saved game (if available)
-   - Select "3" to exit
+   - Select "3" to exit (game will be saved automatically if you have progress)
 
 3. If starting a new game:
    - Choose difficulty level (1 = Easy, 2 = Hard)
    - Play through 12 levels, defeating enemies and experiencing events
-   - Save your progress between levels if desired
    - Visit the shop after completing all levels
+   - Exit anytime and your progress will be saved automatically
 
 ### Game Controls
 
@@ -171,7 +171,7 @@ During gameplay:
 - Follow on-screen prompts to select actions
 - In battle: Choose attack, use potion, or skip
 - When multiple enemies are present: Select target by number
-- Between levels: Choose to continue, save, visit shop, or exit
+- Between levels: Choose to continue, visit shop, or exit (auto-save)
 
 ### Clean Build
 
